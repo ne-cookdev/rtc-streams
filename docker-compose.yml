@@ -1,20 +1,38 @@
-version: '3'
+version: '3.8'
 
 services:
   backend:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
       - ./app:/app
     environment:
       - PYTHONPATH=/app
+      - DATABASE_URL=mysql+pymysql://root:password@db:3306/streaming
+    depends_on:
+      - db
 
   frontend:
-    image: nginx:alpine
+    build:
+      context: ./frontend-react
+      dockerfile: Dockerfile
     ports:
-      - "8080:80"
-    volumes:
-      - ./frontend:/usr/share/nginx/html:ro
+      - "80:80"
     depends_on:
-      - backend 
+      - backend
+
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=streaming
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+volumes:
+  mysql_data: 
