@@ -4,7 +4,7 @@ A real-time streaming platform built with WebRTC technology. This application al
 
 ## Live Demo
 
-The application is live at: [http://51.250.84.238/](http://51.250.84.238/)
+The application is live at: [https://51.250.84.238/](https://51.250.84.238/)
 
 ## Features
 
