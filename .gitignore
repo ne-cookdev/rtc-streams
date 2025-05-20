@@ -24,6 +24,7 @@ wheels/
 venv/
 env/
 ENV/
+mysql_data/
 
 sql_app.db
 

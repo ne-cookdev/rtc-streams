@@ -13,7 +13,8 @@ services:
       - PYTHONPATH=/app
       - DATABASE_URL=mysql+pymysql://root:password@db:3306/streaming
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   frontend:
     build:
@@ -31,8 +32,14 @@ services:
       - MYSQL_DATABASE=streaming
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./mysql_data:/var/lib/mysql
     ports:
       - "3307:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
   mysql_data: 
