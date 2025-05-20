@@ -29,8 +29,11 @@ The application is live at: [http://51.250.84.238/](http://51.250.84.238/)
 - Node.js and npm
 - Python 3.8+
 - Git
+- Docker and Docker Compose (optional)
 
 ### Installation
+
+#### Option 1: Manual Setup
 
 1. Clone the repository
    ```
@@ -56,6 +59,27 @@ The application is live at: [http://51.250.84.238/](http://51.250.84.238/)
    cd frontend-react
    npm install
    npm start
+   ```
+
+#### Option 2: Docker Compose
+
+1. Clone the repository
+   ```
+   git clone <repository-url>
+   cd rtc-streams
+   ```
+
+2. Start all services using Docker Compose
+   ```
+   docker-compose build
+   docker-compose up -d
+   ```
+
+3. Access the application at http://localhost:5173
+
+4. To stop the services
+   ```
+   docker-compose down
    ```
 
 ## Usage Notes
